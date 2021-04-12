@@ -15,7 +15,7 @@ class ClassifierLit(pl.LightningModule):
     
     """
 
-    def __init__(self,learning_rate=3e-4,warmup=1,num_labels=2,frequency=1,patience=50,T_max=10,verbose=True,Pretrained="voidful/albert_chinese_tiny"):
+    def __init__(self,learning_rate=3e-4,warmup=1,num_labels=2,frequency=1,patience=50,T_max=10,verbose=True,Pretrained="hfl/rbtl3"):
         """[summary]
         初始化模型，主要用来
 
