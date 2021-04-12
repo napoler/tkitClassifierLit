@@ -5,8 +5,9 @@ import sys
 # 切换到上级目录
 sys.path.append("../")
 # 引入本地库
-import Demo
+import tkitClassifierLit
 
-Demo =Demo.Demo()
-Demo.fun()
+cl =tkitClassifierLit.ClassifierLit()
+model=cl()
 
+print(model)

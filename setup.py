@@ -19,30 +19,30 @@ def read_file(filename):
 def read_requirements(filename):
     return [line.strip() for line in read_file(filename).splitlines()
             if not line.startswith('#')]
-# long_description="""
+long_description="""
 
-# 这里是说明
-# 一个创建库的demo
-# http://www.terrychan.org/python_libs_demo/
-# """
+一个分类模型
+
+
+"""
 
 long_description=read_file("README.md")
 setup(
-    name='tkitDemo', #修改包名字-
-    version='0.0.0.2                                 ',
-    description='Terry toolkit tkitDemo',
+    name='tkitClassifierLit', #修改包名字-
+    version='0.0.0.1',
+    description='一个分类模型',
     author='Terry Chan',
     author_email='napoler2008@gmail.com',
-    url='http://www.terrychan.org/python_libs_demo/',
-    install_requires=read_requirements('requirements.txt'),  # 指定需要安装的依赖
+    url='https://github.com/napoler/tkitClassifierLit',
+    # install_requires=read_requirements('requirements.txt'),  # 指定需要安装的依赖
     long_description=long_description,
     long_description_content_type="text/markdown",
-    # install_requires=[
-    #     # 'beautifulsoup4==4.7.1',
+    install_requires=[
+        'pytorch-lightning==1.2.7',
+        'transformers==4.5.0'
 
-
-    # ],
-    packages=['Demo'])
+    ],
+    packages=['tkitClassifierLit'])
 
 """
 pip freeze > requirements.txt

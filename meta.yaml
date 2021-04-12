@@ -1,5 +1,5 @@
 package:
-  name: python_libs_demo
+  name: tkitClassifierLit
   version: 0.0.01
 
 build:
@@ -9,4 +9,4 @@ requirements:
   run:
     - python
 about:
-  summary: This is a simple meta-package
+  summary: 一个分类模块
