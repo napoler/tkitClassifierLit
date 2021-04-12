@@ -11,11 +11,10 @@ import  torch
 
 class ClassifierLit(pl.LightningModule):
     """构建分类模型，借助预训练的模型　
-    https://github.com/ymcui/Chinese-BERT-wwm
-    
+    　
     """
 
-    def __init__(self,learning_rate=3e-4,warmup=1,num_labels=2,frequency=1,patience=50,T_max=10,verbose=True,Pretrained="hfl/rbtl3"):
+    def __init__(self,learning_rate=3e-4,warmup=1,num_labels=2,frequency=1,patience=50,T_max=10,verbose=True,Pretrained="hfl/rbtl3",forceBert=False):
         """[summary]
         初始化模型，主要用来
 
@@ -27,8 +26,7 @@ class ClassifierLit(pl.LightningModule):
             patience (int, optional): [description]. Defaults to 50.
             T_max (int, optional): [description]. Defaults to 10.
             verbose (bool, optional): [description]. Defaults to True.
-            Pretrained : 预训练模型 https://github.com/ymcui/Chinese-BERT-wwm
-                https://github.com/brightmart/albert_zh
+            Pretrained : 预训练模型
         """
         
         super().__init__()
@@ -36,7 +34,10 @@ class ClassifierLit(pl.LightningModule):
 
 #         self.model = AutoModel.from_pretrained("hfl/chinese-electra-180g-small-generator") 
 #         self.classifier = torch.nn.Linear(in_features=self.model.embeddings_project.out_features, out_features=self.num_labels)
-        self.model = AutoModel.from_pretrained(Pretrained) 
+        if forceBert:
+            self.model = BertModel.from_pretrained(Pretrained) 
+        else:
+            self.model = AutoModel.from_pretrained(Pretrained) 
          
         self.classifier = torch.nn.Linear(in_features=self.model.pooler.dense.out_features, out_features=self.num_labels)
 #         self.model.pooler.dense=torch.nn.Linear(in_features=768, out_features=self.num_labels, bias=True)
