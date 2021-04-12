@@ -27,6 +27,7 @@ class ClassifierLit(pl.LightningModule):
             T_max (int, optional): [description]. Defaults to 10.
             verbose (bool, optional): [description]. Defaults to True.
             Pretrained : 预训练模型
+            forceBert : 强制使用ｂｅｒｔ加载　默认为False
         """
         
         super().__init__()
