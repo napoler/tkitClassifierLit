@@ -52,7 +52,10 @@ class ClassifierLit(pl.LightningModule):
         self.T_max=T_max # 默认设为step重置步数
         self.verbose=verbose
         # del self.bert
-    def forward(self, x,y=None):
+    def forward(self, x,attention_mask=None,
+        token_type_ids=None,
+        position_ids=None,
+        y=None):
         """[summary]
         训练
         
@@ -64,7 +67,10 @@ class ClassifierLit(pl.LightningModule):
             [type]: [description]
         """
         # in lightning, forward defines the prediction/inference actions
-        pooler_output = self.model(x).pooler_output
+        pooler_output = self.model(input_ids=x,
+                                   attention_mask=attention_mask,
+                                   position_ids=position_ids,
+                                   token_type_ids=token_type_ids).pooler_output
         pooler_output = self.dropout(pooler_output) # 获取第一个输出
         logits=self.classifier(pooler_output)
         if y==None:
