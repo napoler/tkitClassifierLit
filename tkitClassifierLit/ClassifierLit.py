@@ -110,7 +110,7 @@ class ClassifierLit(pl.LightningModule):
         # It is independent of forward
         pred,loss=self(batch[0],token_type_ids=batch[1],attention_mask=batch[2],y=batch[-1])
         
-        acc = FM.accuracy(torch.softmax(pred,dim=1), batch[1])
+        acc = FM.accuracy(torch.softmax(pred,dim=1), batch[-1])
         # Logging to TensorBoard by default
 #         self.log('test_loss', loss)
         metrics = {'val_acc': acc, 'val_loss': loss}
@@ -123,7 +123,7 @@ class ClassifierLit(pl.LightningModule):
         
         pred,loss=self(batch[0],token_type_ids=batch[1],attention_mask=batch[2],y=batch[-1])
         
-        acc = FM.accuracy(torch.softmax(pred,dim=1), batch[1])
+        acc = FM.accuracy(torch.softmax(pred,dim=1), batch[-1])
         # Logging to TensorBoard by default
 #         self.log('test_loss', loss)
         metrics = {'test_acc': acc, 'test_loss': loss}
