@@ -29,7 +29,7 @@ long_description="""
 long_description=read_file("README.md")
 setup(
     name='tkitClassifierLit', #修改包名字-
-    version='0.0.0.1.4',
+    version='0.0.0.1.5',
     description='一个分类模型',
     author='Terry Chan',
     author_email='napoler2008@gmail.com',
