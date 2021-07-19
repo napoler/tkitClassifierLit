@@ -100,7 +100,7 @@ class ClassifierLit(pl.LightningModule):
 #         if self.global_step in [101,1002,10000]:
 #             self.configure_optimizers()
             
-        pred,loss=self(batch[0],batch[1])
+        pred,loss=self(batch[0],token_type_ids=batch[1],attention_mask=batch[2],batch[-1])
         # Logging to TensorBoard by default
         self.log('train_loss', loss)
         return loss
@@ -108,7 +108,7 @@ class ClassifierLit(pl.LightningModule):
         """一次batch训练"""
         # training_step defined the train loop.
         # It is independent of forward
-        pred,loss=self(batch[0],batch[1])
+        pred,loss=self(batch[0],token_type_ids=batch[1],attention_mask=batch[2],batch[-1])
         
         acc = FM.accuracy(torch.softmax(pred,dim=1), batch[1])
         # Logging to TensorBoard by default
@@ -121,7 +121,7 @@ class ClassifierLit(pl.LightningModule):
         # training_step defined the train loop.
         # It is independent of forward
         
-        pred,loss=self(batch[0],batch[1])
+        pred,loss=self(batch[0],token_type_ids=batch[1],attention_mask=batch[2],batch[-1])
         
         acc = FM.accuracy(torch.softmax(pred,dim=1), batch[1])
         # Logging to TensorBoard by default
